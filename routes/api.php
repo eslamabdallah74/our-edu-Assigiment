@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\TransactionController;
 use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -20,4 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::post('/user/insert', [UserController::class, 'store']);
+Route::post('/users/insert', [UserController::class, 'store']);
+Route::post('/transactions/insert', [TransactionController::class, 'store']);
+
+Route::get('/users', [UserController::class, 'index']);

@@ -2,7 +2,6 @@
 
 namespace Tests\Unit;
 
-use App\Constants\Paths;
 use App\Models\Transaction;
 use App\Models\User;
 use App\Services\TransactionJsonData;
@@ -34,9 +33,9 @@ class JsonDataTest extends TestCase
 
         $usersCountAfter = User::count();
 
-
-        $this->assertGreaterThan($usersCountBefore, $usersCountAfter);
+        $this->assertTrue($usersCountAfter > $usersCountBefore);
     }
+
 
     public function test_it_can_insert_transactions_json_data_into_database()
     {
@@ -50,7 +49,7 @@ class JsonDataTest extends TestCase
 
     public function test_transactions_count_after_insert()
     {
-        $transactionCountBefore = User::count();
+        $transactionCountBefore = Transaction::count();
 
         $jsonData = new TransactionJsonData();
         $jsonData->setJsonFilePath(config('paths.transaction_json_path'));
@@ -58,8 +57,6 @@ class JsonDataTest extends TestCase
 
         $transactionCountAfter = Transaction::count();
 
-
-        $this->assertGreaterThan($transactionCountBefore, $transactionCountAfter);
+        $this->assertTrue($transactionCountAfter > $transactionCountBefore);
     }
-    
 }

@@ -20,7 +20,7 @@ class UserJsonData extends JsonData
             'balance' => $item['balance'],
             'currency' => $item['currency'],
             'email' => $item['email'],
-            'created_at' => $item['created_at'],
+            'created_at' => date('Y-m-d H:i:s', strtotime(str_replace('/', '-', $item['created_at']))),
             'id' => $item['id'],
         ];
     }
