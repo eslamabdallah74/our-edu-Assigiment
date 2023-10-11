@@ -1,67 +1,50 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# OurEdu Application
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Overview
 
-## About Laravel
+OurEdu is an application designed to handle and manage educational data. It provides the ability to insert user and transaction data from JSON files into a database, with separate databases for testing purposes.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Usage
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Running Tests
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+To run tests in this application, follow these steps:
 
-## Learning Laravel
+1. Ensure that you have configured your database connections for testing in the `.env` file, specifying the `DB_DATABASE_TEST`, `DB_USERNAME_TEST`, and `DB_PASSWORD_TEST` environment variables.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+2. When running tests, specify the desired connection using the `--env` flag. For example, to run tests using the `testing` connection:
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+   ```sh
+   php artisan test --env=testing
+   ```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+This ensures that the tests use the correct database configuration.
 
-## Laravel Sponsors
+### JSON Data Insertion
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+The application is structured to handle JSON data insertion. It uses a common abstract class `JsonData` that implements the `JsonDataInterface`. This class contains most of the shared logic.
 
-### Premium Partners
+### Configuration Paths
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+The application's configuration file contains paths to JSON files. These paths can be customized to point to different folders or locations. The configuration file can be found at `config/paths.php`. Here is an example of how it's set up:
 
-## Contributing
+```php
+return [
+    'user_json_path' => storage_path('json/users.json'),
+    'transaction_json_path' => storage_path('json/transactions.json'),
+];
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+You can update these paths to match your specific needs or to point to new folders or directories.
 
-## Code of Conduct
+### Abstract Class for JSON Data
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+The application utilizes an abstract class `JsonData` that extends the `JsonDataInterface`. This abstract class contains shared logic and can be extended to create separate services for different data types, such as users and transactions.
 
-## Security Vulnerabilities
+### Controller Injection
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Controllers within the application use automatic dependency injection. For example, the `UserJsonData` service is automatically injected into the controller, making the code clean and easy to manage.
 
-## License
+---
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-"# our-edu-Assigiment" 
+Feel free to expand on this base description and add further details as needed for your specific application.
