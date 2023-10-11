@@ -13,10 +13,6 @@ class User extends Authenticatable
         'id' => 'string',
     ];
 
-    const authorized = 1;
-    const decline = 1;
-    const refunded = 1;
-
 
     public function transactions()
     {

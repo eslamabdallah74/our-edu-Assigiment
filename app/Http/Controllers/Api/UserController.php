@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\GetUserDataRequest;
+use App\Http\Resources\UserCollection;
 use App\Models\User;
 use App\Services\UserJsonData;
 use App\Traits\apiTrait;
-use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -17,10 +18,17 @@ class UserController extends Controller
         //Automatic Injection
     }
 
-    public function index(Request $request)
+    public function index(GetUserDataRequest $request)
     {
-        $users = User::with('transactions')->get();
-        return response()->json($users);
+        $filters = $request->only(['status_code', 'currency', 'min_amount', 'max_amount', 'start_date', 'end_date']);
+
+        $users = User::with('transactions')
+            ->whereHas('transactions', function ($query) use ($filters) {
+                $query->applyFilters($filters);
+            })
+            ->get();
+
+        return new UserCollection($users);
     }
 
 
