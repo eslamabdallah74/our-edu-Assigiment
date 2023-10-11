@@ -3,20 +3,31 @@
 namespace App\Services;
 
 use App\Interfaces\JsonDataInterface;
+use App\Models\Transaction;
 
-class TransactionJsonData implements JsonDataInterface
+class TransactionJsonData extends JsonData
 {
-    protected $jsonFilePath;
-
-    public function setJsonFilePath(string $jsonFilePath): bool
+    protected function getDataKey(): string
     {
-        $this->jsonFilePath = $jsonFilePath;
-        return true;
+        return 'transactions';
     }
 
-    public function insertData(): bool
+    protected function prepareDataForInsert(array $item): array
     {
-        return true;
+        return [
+            'paidAmount' => $item['paidAmount'],
+            'Currency' => $item['Currency'],
+            'parentEmail' => $item['parentEmail'],
+            'statusCode' => $item['statusCode'],
+            'paymentDate' => $item['paymentDate'],
+            'parentIdentification' => $item['parentIdentification'],
+        ];
     }
+
+    protected function insertBatch(array $data)
+    {
+        Transaction::insert($data);
+    }
+
 
 }
