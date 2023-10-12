@@ -12,7 +12,7 @@ OurEdu is an application designed to handle and manage educational data. It prov
 
 To run tests in this application, follow these steps:
 
-1. Ensure that you have configured your database connections for testing in the `.env` file, specifying the `DB_DATABASE_TEST`, `DB_USERNAME_TEST`, and `DB_PASSWORD_TEST` environment variables.
+1. Ensure that you have configured your database connections for testing in the `.env.testing` file, specifying the `DB_DATABASE`, `DB_USERNAME`, and `DB_PASSWORD` environment variables.
 
 2. When running tests, specify the desired connection using the `--env` flag. For example, to run tests using the `testing` connection:
 

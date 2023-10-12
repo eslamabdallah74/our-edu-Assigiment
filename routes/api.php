@@ -24,4 +24,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/users/insert', [UserController::class, 'store']);
 Route::post('/transactions/insert', [TransactionController::class, 'store']);
 
-Route::get('/users', [UserController::class, 'index']);
+Route::get('/users', [UserController::class, 'index'])->name('users-data');

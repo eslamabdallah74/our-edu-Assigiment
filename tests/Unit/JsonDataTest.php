@@ -60,7 +60,20 @@ class JsonDataTest extends TestCase
         $this->assertTrue($transactionCountAfter > $transactionCountBefore);
     }
 
-    
+    public function test_return_users_data()
+    {
+        $userData = new UserJsonData();
+        $userData->setJsonFilePath(config('paths.user_json_path'));
+        $userData->insertData();
+
+        $transactionData = new TransactionJsonData();
+        $transactionData->setJsonFilePath(config('paths.transaction_json_path'));
+        $transactionData->insertData();
+
+        $response = $this->get(route('users-data'));
+        $response->assertStatus(200);
+        $response->assertJsonStructure(['data']);
+    }
 
 
 }

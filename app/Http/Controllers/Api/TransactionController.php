@@ -19,6 +19,6 @@ class TransactionController extends Controller
     {
         $this->transactionJson->setJsonFilePath(config('paths.transaction_json_path'));
         $this->transactionJson->insertData();
-        return $this->successInsert('TransactionJson');
+        return $this->successInsert('Transaction');
     }
 }

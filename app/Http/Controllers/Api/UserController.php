@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\GetUserDataRequest;
 use App\Http\Resources\UserCollection;
+use App\Http\Resources\UserResource;
 use App\Models\User;
 use App\Services\UserJsonData;
 use App\Traits\apiTrait;
@@ -28,10 +29,10 @@ class UserController extends Controller
             })
             ->get();
 
-        return new UserCollection($users);
+        return  UserResource::collection($users);
     }
 
-    
+
 
     public function store()
     {
