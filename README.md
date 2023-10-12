@@ -50,5 +50,3 @@ Controllers within the application use automatic dependency injection. For examp
 **Please note that the application retrieves users who have transactions. Users without transactions will not be included in the result.**
 
 ---
-
-Feel free to expand on this base description and add further details as needed for your specific application.

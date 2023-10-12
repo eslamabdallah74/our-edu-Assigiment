@@ -22,7 +22,7 @@ trait apiTrait
                 'message' => $modelName . ' already exist.',
                 'status' => false
             ],
-            201
+            409
         );
     }
 }
