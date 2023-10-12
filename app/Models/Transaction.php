@@ -29,7 +29,6 @@ class Transaction extends Model
 
     public function scopeApplyFilters($query, $filters)
     {
-
         if (!empty($filters['status_code'])) {
             $query->statusCode($filters['status_code']);
         }

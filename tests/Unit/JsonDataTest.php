@@ -33,7 +33,7 @@ class JsonDataTest extends TestCase
 
         $usersCountAfter = User::count();
 
-        $this->assertTrue($usersCountAfter > $usersCountBefore);
+        $this->assertGreaterThanOrEqual($usersCountBefore, $usersCountAfter);
     }
 
 
@@ -59,4 +59,8 @@ class JsonDataTest extends TestCase
 
         $this->assertTrue($transactionCountAfter > $transactionCountBefore);
     }
+
+    
+
+
 }

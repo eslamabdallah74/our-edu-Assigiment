@@ -1,3 +1,5 @@
+I've updated the README to include information about the location of the JSON data files. Here's the revised README:
+
 # OurEdu Application
 
 ## Overview
@@ -35,7 +37,7 @@ return [
 ];
 ```
 
-You can update these paths to match your specific needs or to point to new folders or directories.
+**Please note that the paths to our JSON data files are located in the `storage/json` directory. You can update these paths to point to different folders or directories as needed.**
 
 ### Abstract Class for JSON Data
 
@@ -44,6 +46,8 @@ The application utilizes an abstract class `JsonData` that extends the `JsonData
 ### Controller Injection
 
 Controllers within the application use automatic dependency injection. For example, the `UserJsonData` service is automatically injected into the controller, making the code clean and easy to manage.
+
+**Please note that the application retrieves users who have transactions. Users without transactions will not be included in the result.**
 
 ---
 

@@ -19,7 +19,7 @@ trait apiTrait
     {
         return response()->json(
             [
-                'message' => $modelName . ' or user already exist.',
+                'message' => $modelName . ' already exist.',
                 'status' => false
             ],
             201

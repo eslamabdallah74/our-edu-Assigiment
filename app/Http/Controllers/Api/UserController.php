@@ -31,6 +31,7 @@ class UserController extends Controller
         return new UserCollection($users);
     }
 
+    
 
     public function store()
     {
